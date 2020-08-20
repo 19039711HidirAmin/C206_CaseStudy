@@ -225,10 +225,10 @@ public class C206_CaseStudy {
     }
    
     public void viewCourseCategory() {
-        String output = String.format("%s %s\n", "Course Category Name","Course Category Description");
+        String output = String.format("%-25s %-200s\n", "Course Category Name","Course Category Description");
        
         for(CourseCategory category : categoryList) {
-            output += String.format("%s %s", category.getCategoryName(),category.getCategoryDescription());
+            output += String.format("%-25s %-200s \n", category.getCategoryName(),category.getCategoryDescription());
         }
         System.out.println(output);
     }
