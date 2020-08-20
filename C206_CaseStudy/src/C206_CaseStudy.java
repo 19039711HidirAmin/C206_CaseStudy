@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 	ArrayList<Members> memberList = new ArrayList<Members>();
+	ArrayList<CourseCategory> categoryList = new ArrayList<CourseCategory>();
 	private static C206_CaseStudy run = new C206_CaseStudy();
 
 	public static void main(String[] args) {
@@ -91,11 +92,40 @@ public class C206_CaseStudy {
 		
 	
 	//MEMBER 2
+	public void doAddCourseCategory(){
+		String categoryName = Helper.readString("Enter category name > ");
+		String categoryDescription = Helper.readString("Enter category description > ");
+		
+		for (CourseCategory category:categoryList) {
+			if (categoryName.equalsIgnoreCase(category.getCategoryName())) {
+				System.out.println("The category name is already exist.");
+				categoryName = Helper.readString("Enter category name > ");
+			}
+		}
+		
+		CourseCategory newCategory = new CourseCategory(categoryName,categoryDescription);
+		categoryList.add(newCategory);
+	}
 	
+	public void viewCourseCategory() {
+		
+		String output = String.format("%s %s", "Course Category Name","Course Category Description");
+		
+		for(CourseCategory category : categoryList) {
+			output += String.format("%s %s", category.getCategoryName(),category.getCategoryDescription());
+		}
+		System.out.println(output);
+	}
 	
-	
-	
-	
+	public void deleteCourseCategory() {
+		String deleteCategory = Helper.readString("Name of category to delete > ");
+		
+		for (CourseCategory category:categoryList) {
+			if (deleteCategory.equalsIgnoreCase(category.getCategoryName())) {
+				categoryList.remove(category);
+			}
+		}
+	}
 	
 	//MEMBER 3
 	
