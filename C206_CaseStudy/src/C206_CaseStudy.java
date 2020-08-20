@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 	ArrayList<Members> memberList = new ArrayList<Members>();
 	ArrayList<CourseCategory> categoryList = new ArrayList<CourseCategory>();
+	ArrayList<CourseSchedule> scheduleList = new ArrayList<CourseSchedule>();
 	private static C206_CaseStudy run = new C206_CaseStudy();
 
 	public static void main(String[] args) {
@@ -13,7 +14,7 @@ public class C206_CaseStudy {
 		
 		int option = Helper.readInt("Selection Option > ");
 		
-		while (option != 6) {
+		while (option != 7) {
 			if(option == 1) {
 				
 				Helper.line(30, "=");
@@ -40,6 +41,38 @@ public class C206_CaseStudy {
 				
 					
 					
+			}else if(option==2) {
+				
+				
+			}else if(option==3) {
+				
+			}else if(option==4) {
+				Helper.line(30, "=");
+				System.out.println("Course Schedule Management");
+				Helper.line(30, "=");
+				System.out.println("Option 1 - Add Course Schedule");
+				System.out.println("Option 2 - View Course Schedule");
+				System.out.println("Option 3 - Delete Course Schedule");
+				System.out.println("Option 4 - Return");
+				
+				int select = Helper.readInt("Selection Option > ");
+						
+				if(select == 1) {
+					run.doAddCourseSchedule();
+				}
+				else if(select == 2) {
+					run.viewCourseSchedule();
+				}
+				else if(select == 3) {
+					run.deleteCourseSchedule();
+				}else {
+					run.start();
+					
+				}
+			}else if(option==5) {
+				
+			}else {
+				System.out.println("Session End.");
 			}
 		}
 	}
@@ -50,11 +83,12 @@ public class C206_CaseStudy {
 			System.out.println("===========================");
 			System.out.println("Course Management");
 			System.out.println("===========================");
-			System.out.println("Option 1 - Add Members");
-			System.out.println("Option 2 - Add Course Category");
-			System.out.println("Option 3 - Add Course");
-			System.out.println("Option 4 - Add Course Schedule");
+			System.out.println("Option 1 - Members");
+			System.out.println("Option 2 - Course Category");
+			System.out.println("Option 3 - Course");
+			System.out.println("Option 4 - Course Schedule");
 			System.out.println("Option 5 - Register for a course Schedule");
+			System.out.println("Option 6 - End");
 			
 			
 	}
@@ -133,7 +167,45 @@ public class C206_CaseStudy {
 	
 	
 	//MEMBER 4 - Haziq Hilman
+	public void doAddCourseSchedule(){
+		int scheduleID = Helper.readInt("Enter course schedule id > ");
+		double price = Helper.readInt("Enter course  price > ");
+		String startDateTime = Helper.readString("Enter start date and time(DD/MM/YYYY 00:00) >");
+		String endDateTime = Helper.readString("Enter end date and time(DD/MM/YYYY 00:00) >");
+		String location = Helper.readString("Enter Course location > ");
+		
+		for (CourseSchedule schedule:scheduleList) {
+			if (scheduleID == schedule.getId()) {
+				System.out.println("This course schedule is already exist.");
+				run.doAddCourseSchedule();
+			}
+		}
+		
+		CourseSchedule newSchedule = new CourseSchedule(scheduleID,price,startDateTime,endDateTime,location);
+		scheduleList.add(newSchedule);
+	}
 	
+	public void viewCourseSchedule() {
+		String output = String.format("%s %5s %10s %10s %5s", "Schedule ID","Price","Start Date & Time","End Date & Time","Location");
+		
+		for(CourseSchedule schedule:scheduleList) {
+			output += String.format("\n %d %5f %10s %10s %s", schedule.getId(),schedule.getPrice(),schedule.getstartDateTime(),schedule.getendDateTime(),schedule.getLocation());
+		}
+		System.out.println(output);
+	}
+	
+	public void deleteCourseSchedule() {
+		viewCourseSchedule();
+		int deleteSchedule = Helper.readInt("ID of schedule to delete > ");
+		
+		for (CourseSchedule schedule:scheduleList) {
+			if (deleteSchedule == schedule.getId()) {
+				scheduleList.remove(schedule);
+			}else {
+				System.out.println("ID does not exist!");
+			}
+		}
+	}
 	
 	
 	
