@@ -274,10 +274,12 @@ public class C206_CaseStudy {
 	public void ViewCourse() {
         String output = "";
        
-        output += String.format("%-12s %-6s %-9s %-17s %-9s %s\n", "coursecode","title","categoryname","description","duration","courseprerequisite");
+        output += String.format("%-12s %-12s %-14s %-50s %-15s %-20s\n", "coursecode","title","categoryname","description","duration","courseprerequisite");
        
         for(Course i : courseList) {
-            output += i.toString();
+        	output += String.format("%-12s %-12s %-14s %-50s %-15s %-20s\n", i.getcoursecode(),i.gettitle(),
+        			i.getcategoryname(),i.getdescription(),
+        			i.getduration(),i.getcourseprerequisite());
         }
         System.out.println(output);
     }
