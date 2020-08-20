@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 
+
 public class C206_CaseStudy {
 	ArrayList<Members> memberList = new ArrayList<Members>();
 	private static C206_CaseStudy run = new C206_CaseStudy();
@@ -96,13 +97,13 @@ public class C206_CaseStudy {
 	
 	
 	
+	//MEMBER 3
 	
 	
 	
 	
 	
-	
-	//MEMBER 4
+	//MEMBER 4 - Haziq Hilman
 	
 	
 	
