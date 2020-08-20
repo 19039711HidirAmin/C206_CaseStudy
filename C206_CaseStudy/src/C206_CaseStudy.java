@@ -108,7 +108,6 @@ public class C206_CaseStudy {
 	}
 	
 	public void viewCourseCategory() {
-		
 		String output = String.format("%s %s", "Course Category Name","Course Category Description");
 		
 		for(CourseCategory category : categoryList) {
