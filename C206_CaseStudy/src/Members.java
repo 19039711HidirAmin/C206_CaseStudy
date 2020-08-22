@@ -13,7 +13,7 @@ public class Members {
 		this.name = name;
 		this.gender = gender;
 		this.email = email;
-		
+		this.mobile = mobile;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate date = LocalDate.parse(dob, formatter);
 		this.dob = date;

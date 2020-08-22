@@ -5,11 +5,13 @@ public class C206_CaseStudy {
 	ArrayList<Members> memberList = new ArrayList<Members>();
 	ArrayList<Course> courseList = new ArrayList<Course>();
 	ArrayList<CourseCategory> categoryList = new ArrayList<CourseCategory>();
-	ArrayList<CourseSchedule> scheduleList = new ArrayList<CourseSchedule>();
+	static ArrayList<CourseSchedule> scheduleList = new ArrayList<CourseSchedule>();
 	private static C206_CaseStudy run = new C206_CaseStudy();
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		scheduleList.add(new CourseSchedule(25,20,"25/10/2020 9:00","22/12/2020 10:00","RP"));
 		int option = 0;
 		while (option != 6) {
 			
@@ -127,14 +129,15 @@ public class C206_CaseStudy {
 					a_option = Helper.readInt("Selection Option > ");
 					
 					if (a_option == 1) {
-						run.doAddCourseSchedule();;
+						CourseSchedule CS = inputCourseSchedule();
+						C206_CaseStudy.addCourseSchedule(scheduleList, CS);
 					}
 					
 					else if (a_option == 2) {
-						run.viewCourseSchedule();;
+						C206_CaseStudy.viewAllCourseSchedule(scheduleList);
 					}
 					else if(a_option == 3) {
-						run.deleteCourseSchedule();;
+						run.deleteCourseSchedule();
 					}
 					else if(a_option == 4) {
 						System.out.println("Thank you!");
@@ -303,35 +306,47 @@ public class C206_CaseStudy {
 	
 	//MEMBER 4 HAZIQ
 	
-	 public void doAddCourseSchedule(){
+	 public static CourseSchedule inputCourseSchedule(){
 	        int scheduleID = Helper.readInt("Enter course schedule id > ");
 	        double price = Helper.readInt("Enter course  price > ");
 	        String startDateTime = Helper.readString("Enter start date and time(DD/MM/YYYY 00:00) >");
 	        String endDateTime = Helper.readString("Enter end date and time(DD/MM/YYYY 00:00) >");
 	        String location = Helper.readString("Enter Course location > ");
-	       
-	        for (CourseSchedule schedule:scheduleList) {
-	            if (scheduleID == schedule.getId()) {
-	                System.out.println("This course schedule is already exist.");
-	                run.doAddCourseSchedule();
-	            }
-	        }
-	       
+	        
 	        CourseSchedule newSchedule = new CourseSchedule(scheduleID,price,startDateTime,endDateTime,location);
-	        scheduleList.add(newSchedule);
+	        return newSchedule;
+	        
 	    }
+
+
+
+
+	static void addCourseSchedule(ArrayList<CourseSchedule> scheduleList, CourseSchedule newSchedule) {
+		
+		scheduleList.add(newSchedule);
+//		System.out.println("Course Schedule Added");
+	}
 	   
-	    public void viewCourseSchedule() {
-	        String output = String.format("%s %5s %10s %10s %5s", "Schedule ID","Price","Start Date & Time","End Date & Time","Location");
+	    public static void viewAllCourseSchedule(ArrayList<CourseSchedule> scheduleList) {
+	        String output = String.format("%-10s %-10s %-20s %-20s %-10s\n", "Schedule ID","Price","Start Date & Time","End Date & Time","Location");
 	       
-	        for(CourseSchedule schedule:scheduleList) {
-	            output += String.format("\n %d %9.2f %20s %20s %10s", schedule.getId(),schedule.getPrice(),schedule.getstartDateTime(),schedule.getendDateTime(),schedule.getLocation());
-	        }
+	        output += retrieveCourseSchedule(scheduleList);
 	        System.out.println(output);
 	    }
+
+
+
+
+		public static String retrieveCourseSchedule(ArrayList<CourseSchedule> scheduleList ) {
+			String output = "";
+			for(CourseSchedule schedule:scheduleList) {
+	            output += String.format("%-10d %-10.2f %-20s %-20s %-10s", schedule.getId(),schedule.getPrice(),schedule.getstartDateTime(),schedule.getendDateTime(),schedule.getLocation());
+	        }
+			return output;
+		}
 	   
 	    public void deleteCourseSchedule() {
-	        viewCourseSchedule();
+	        viewAllCourseSchedule(scheduleList);
 	        int deleteSchedule = Helper.readInt("ID of schedule to delete > ");
 	       
 	        for (int i = 0;i<scheduleList.size();i++) {	        	
