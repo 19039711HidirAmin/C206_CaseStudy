@@ -62,7 +62,7 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is valid Camcorder arraylist to retrieve item", scheduleList);
 		
 		//test if the list of course schedules retrieved from the SourceCentre is empty - boundary
-		String allCourseSchedule= C206_CaseStudy.retrieveCourseSchedule(scheduleList);
+		String allCourseSchedule= C206_CaseStudy.retrieveAllCourseSchedule(scheduleList);
 		String testOutput = "";
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCourseSchedule);
 		
@@ -71,12 +71,13 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that Camcorder arraylist size is 1", 1, scheduleList.size());
 		
 		//test if the expected output string same as the list of course schedules retrieved from the SourceCentre	
-		allCourseSchedule= C206_CaseStudy.retrieveCourseSchedule(scheduleList);
+		allCourseSchedule= C206_CaseStudy.retrieveAllCourseSchedule(scheduleList);
 		testOutput = String.format("%-10s %-10s %-20s %-20s %-10s","25", "20.00","25/10/2020 9:00","22/12/2020 10:00","RP");
 	
 	
 		assertEquals("Test that ViewAllCamcorderlist", testOutput, allCourseSchedule);
 		
 	}
+	
 
 }

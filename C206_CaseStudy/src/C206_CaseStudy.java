@@ -116,7 +116,7 @@ public class C206_CaseStudy {
 			//MEMBER 4 OPTIONS
 			if(option == 4) {
 				int a_option = 0;
-				while (a_option != 4) {
+				while (a_option != 6) {
 					
 					Helper.line(30, "=");
 					System.out.println("Course Schedule Management");
@@ -124,7 +124,9 @@ public class C206_CaseStudy {
 					System.out.println("Option 1 - Add Course Schedule");
 					System.out.println("Option 2 - View Course Schedule");
 					System.out.println("Option 3 - Delete Course Schedule");
-					System.out.println("Option 4 - Return");	
+					System.out.println("Option 4 - Search Course Schedule");
+					System.out.println("Option 5 - Update Course Schedule");
+					System.out.println("Option 6 - Return");	
 					
 					a_option = Helper.readInt("Selection Option > ");
 					
@@ -137,9 +139,18 @@ public class C206_CaseStudy {
 						C206_CaseStudy.viewAllCourseSchedule(scheduleList);
 					}
 					else if(a_option == 3) {
-						run.deleteCourseSchedule();
+						C206_CaseStudy.viewAllCourseSchedule(scheduleList);
+						int id  = Helper.readInt("Enter schedule Id to delete > ");
+						C206_CaseStudy.deleteCourseSchedule(scheduleList, id);
 					}
 					else if(a_option == 4) {
+						int id  = Helper.readInt("Enter schedule Id to search > ");
+						C206_CaseStudy.searchCourseSchedule(scheduleList, id);
+					}else if(a_option == 5) {
+						C206_CaseStudy.viewAllCourseSchedule(scheduleList);
+						int id  = Helper.readInt("Enter schedule Id to update > ");
+						C206_CaseStudy.updateCourseSchedule(scheduleList, id);
+					}else if(a_option ==6) {
 						System.out.println("Thank you!");
 					}
 				}
@@ -313,6 +324,12 @@ public class C206_CaseStudy {
 	        String endDateTime = Helper.readString("Enter end date and time(DD/MM/YYYY 00:00) >");
 	        String location = Helper.readString("Enter Course location > ");
 	        
+	        for (int i = 0;i<scheduleList.size();i++) {	        	
+	            if (scheduleID == scheduleList.get(i).getId()) {
+	                System.out.println("Sorry! ID already exist.");
+	            }
+	        }
+	        
 	        CourseSchedule newSchedule = new CourseSchedule(scheduleID,price,startDateTime,endDateTime,location);
 	        return newSchedule;
 	        
@@ -330,14 +347,14 @@ public class C206_CaseStudy {
 	    public static void viewAllCourseSchedule(ArrayList<CourseSchedule> scheduleList) {
 	        String output = String.format("%-10s %-10s %-20s %-20s %-10s\n", "Schedule ID","Price","Start Date & Time","End Date & Time","Location");
 	       
-	        output += retrieveCourseSchedule(scheduleList);
+	        output += retrieveAllCourseSchedule(scheduleList);
 	        System.out.println(output);
 	    }
 
 
 
 
-		public static String retrieveCourseSchedule(ArrayList<CourseSchedule> scheduleList ) {
+		public static String retrieveAllCourseSchedule(ArrayList<CourseSchedule> scheduleList ) {
 			String output = "";
 			for(CourseSchedule schedule:scheduleList) {
 	            output += String.format("%-10d %-10.2f %-20s %-20s %-10s", schedule.getId(),schedule.getPrice(),schedule.getstartDateTime(),schedule.getendDateTime(),schedule.getLocation());
@@ -345,12 +362,10 @@ public class C206_CaseStudy {
 			return output;
 		}
 	   
-	    public void deleteCourseSchedule() {
-	        viewAllCourseSchedule(scheduleList);
-	        int deleteSchedule = Helper.readInt("ID of schedule to delete > ");
+	    public static void deleteCourseSchedule(ArrayList<CourseSchedule> scheduleList,int id) {
 	       
 	        for (int i = 0;i<scheduleList.size();i++) {	        	
-	            if (deleteSchedule == scheduleList.get(i).getId()) {
+	            if (id == scheduleList.get(i).getId()) {
 	                scheduleList.remove(scheduleList.get(i));
 	                System.out.println("Schedule successfully deleted");
 	            }else {
@@ -359,8 +374,36 @@ public class C206_CaseStudy {
 	        }
 	    }
 	
-	
-	
+	    public static void searchCourseSchedule(ArrayList<CourseSchedule> scheduleList,int id) {
+	    	for (int i = 0;i<scheduleList.size();i++) {	        	
+	            if (id == scheduleList.get(i).getId()) {
+	            	String output = String.format("%-10s %-10s %-20s %-20s %-10s\n", "Schedule ID","Price","Start Date & Time","End Date & Time","Location");  
+	            	output += String.format("%-10d %-10.2f %-20s %-20s %-10s", scheduleList.get(i).getId(),scheduleList.get(i).getPrice(),scheduleList.get(i).getstartDateTime(),scheduleList.get(i).getendDateTime(),scheduleList.get(i).getLocation());
+	            	System.out.println(output);
+	            }else {
+	                System.out.println("ID does not exist!");
+	            }
+	        }
+	    }
+	    public static void updateCourseSchedule(ArrayList<CourseSchedule> scheduleList,int id) {
+	    	
+	        for (int i = 0;i<scheduleList.size();i++) {	        	
+	            if (id == scheduleList.get(i).getId()) {
+	            	double price = Helper.readInt("Enter course  price > ");
+	            	String startDateTime = Helper.readString("Enter start date and time(DD/MM/YYYY 00:00) >");
+	            	String endDateTime = Helper.readString("Enter end date and time(DD/MM/YYYY 00:00) >");
+	            	String location = Helper.readString("Enter Course location > ");
+	            	
+	            	scheduleList.get(i).setPrice(price);
+	            	scheduleList.get(i).setStartDateTime(startDateTime);
+	            	scheduleList.get(i).setEndDateTime(endDateTime);
+	            	scheduleList.get(i).setLocation(location);
+	            	System.out.println("Course Schedule " + scheduleList.get(i).getId()+ " has been updated");
+	            }else {
+	                System.out.println("ID does not exist!");
+	            }
+	        }
+	    }
 	
 	
 	
