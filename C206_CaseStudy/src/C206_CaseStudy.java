@@ -31,7 +31,8 @@ public class C206_CaseStudy {
 				System.out.println("Option 2 - View Member Account");
 				System.out.println("Option 3 - Delete Member Account");
 				System.out.println("Option 4 - Search Member Account");
-				System.out.println("Option 5 - Return");	
+				System.out.println("Option 5 - Update Member Account");
+				System.out.println("Option 6 - Return");	
 				
 				a_option = Helper.readInt("Select Option > ");
 				
@@ -51,7 +52,11 @@ public class C206_CaseStudy {
 				else if(a_option == 4) {
 					run.searchMember();
 				}
-				else if (a_option == 5) {
+				
+				else if(a_option == 5) {
+					run.memberUpdate();
+				}
+				else if (a_option == 6) {
 					System.out.println("Thank you!");
 				}
 				
@@ -229,7 +234,7 @@ public class C206_CaseStudy {
 	}
 	
 	public void searchMember() {
-		String name = Helper.readString("Enter name to search: > ");
+		String name = Helper.readString("Enter name to search :  ");
     	for (Members search : memberList) {	        	
             if (search.getName().equalsIgnoreCase(name)) {
             	String output = String.format("%-12s %-6s %-9s %-17s %-9s %s\n", "NAME","GENDER","MOBILE","EMAIL","DOB","COUNTRY");  
@@ -242,7 +247,24 @@ public class C206_CaseStudy {
         }
     }
 	
+	public void memberUpdate() {
 		
+    	String name = Helper.readString("Enter name to update : ");
+        for (Members update : memberList) {	        	
+            if (update.getName().equalsIgnoreCase(name)) {
+            	int mobile = Helper.readInt("Enter new Mobile Number : ");
+            	String email = Helper.readString("Enter new Email : ");
+            	String country = Helper.readString("Enter new Country Name : ");
+           
+            	update.setMobile(mobile);
+            	update.setEmail(email);
+            	update.setCountry(country);
+            	System.out.println("Your information has been updated!");
+            }else {
+                System.out.println("Name does not exist!");
+            }
+        }
+    }
 	
 	//MEMBER 2 WEI JIE
 	
@@ -333,6 +355,8 @@ public class C206_CaseStudy {
                 System.out.println("Course does not exist!");
             }
         }
+        
+        
 }
 
         

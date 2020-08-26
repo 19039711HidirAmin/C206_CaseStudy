@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Members {
+
 	private String name;
 	private String gender;
 	private int mobile;
@@ -45,6 +46,18 @@ public class Members {
 
 	public String getCountry() {
 		return country;
+	}
+	
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 	public String toString() {
