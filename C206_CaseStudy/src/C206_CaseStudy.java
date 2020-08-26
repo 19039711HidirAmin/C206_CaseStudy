@@ -30,7 +30,8 @@ public class C206_CaseStudy {
 				System.out.println("Option 1 - Add Member Account");
 				System.out.println("Option 2 - View Member Account");
 				System.out.println("Option 3 - Delete Member Account");
-				System.out.println("Option 4 - Return");	
+				System.out.println("Option 4 - Search Member Account");
+				System.out.println("Option 5 - Return");	
 				
 				a_option = Helper.readInt("Select Option > ");
 				
@@ -42,7 +43,15 @@ public class C206_CaseStudy {
 					run.doViewMembers();
 					
 				}
-				else if (a_option == 4) {
+				
+				else if(a_option == 3) {
+					run.doDeleteMembers();
+				}
+				
+				else if(a_option == 4) {
+					run.searchMember();
+				}
+				else if (a_option == 5) {
 					System.out.println("Thank you!");
 				}
 				
@@ -216,8 +225,22 @@ public class C206_CaseStudy {
 	}
 	
 	public void doDeleteMembers() {
-		//Hidir will do this
+		//Hidir will do th
 	}
+	
+	public void searchMember() {
+		String name = Helper.readString("Enter name to search: > ");
+    	for (Members search : memberList) {	        	
+            if (search.getName().equalsIgnoreCase(name)) {
+            	String output = String.format("%-12s %-6s %-9s %-17s %-9s %s\n", "NAME","GENDER","MOBILE","EMAIL","DOB","COUNTRY");  
+            	output += search.toString();
+            	
+            	System.out.println(output);
+            }else {
+                System.out.println("Name does not exist!");
+            }
+        }
+    }
 	
 		
 	
