@@ -95,7 +95,7 @@ public class C206_CaseStudyTest {
 		
 	}
 	
-	//Member 3 WEI JIE
+	//Member 2 WEI JIE
 	@Test
 	public void doAddCourseCategoryTest() {
 		// Item list is not null, so that can add a new item - boundary
