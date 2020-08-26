@@ -48,36 +48,48 @@ public class C206_CaseStudyTest {
 	@Test
 	public void doAddCourseScheduleTest() {
 		// Item list is not null, so that can add a new item - boundary
-		assertNotNull("Check if there is valid Camcorder arraylist to add to", scheduleList);
+		assertNotNull("Check if there is valid Course Schedule arraylist to add to", scheduleList);
 		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
 		//The item just added is as same as the first item of the list
 		C206_CaseStudy.addCourseSchedule(scheduleList, S1);
-		assertEquals("Check that Camcorder arraylist size is 1", 1, scheduleList.size());
-		assertSame("Check that Camcorder is added", S1, scheduleList.get(0));
+		assertEquals("Check that Course Schedule arraylist size is 1", 1, scheduleList.size());
+		assertSame("Check that Course Schedule is added", S1, scheduleList.get(0));
 		
 	}
 	@Test
 	public void retrieveAllCourseScheduleTest() {
 		// Test if Item list is not null but empty -boundary
-		assertNotNull("Test if there is valid Camcorder arraylist to retrieve item", scheduleList);
+		assertNotNull("Test if there is valid Course Schedule arraylist to retrieve item", scheduleList);
 		
 		//test if the list of course schedules retrieved from the SourceCentre is empty - boundary
 		String allCourseSchedule= C206_CaseStudy.retrieveAllCourseSchedule(scheduleList);
 		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCourseSchedule);
+		assertEquals("Check the View All Course Schedule", testOutput, allCourseSchedule);
 		
-		//Given an empty list, after adding 1 items, test if the size of the list is 1 - normal
+		//Given an empty list, after adding 1 item, test if the size of the list is 1 - normal
 		C206_CaseStudy.addCourseSchedule(scheduleList, S1);
-		assertEquals("Test that Camcorder arraylist size is 1", 1, scheduleList.size());
+		assertEquals("Test that Course Schedule arraylist size is 1", 1, scheduleList.size());
 		
 		//test if the expected output string same as the list of course schedules retrieved from the SourceCentre	
 		allCourseSchedule= C206_CaseStudy.retrieveAllCourseSchedule(scheduleList);
 		testOutput = String.format("%-10s %-10s %-20s %-20s %-10s","25", "20.00","25/10/2020 9:00","22/12/2020 10:00","RP");
 	
 	
-		assertEquals("Test that ViewAllCamcorderlist", testOutput, allCourseSchedule);
+		assertEquals("Test the View All Course Schedule", testOutput, allCourseSchedule);
 		
 	}
-	
-
+	@Test	
+	public void doDeleteCourseScheduleTest() {
+		// Item list is not null, so that can delete an item - boundary
+		assertNotNull("Check if there is valid Camcorder arraylist to add to", scheduleList);
+		
+		//Given an empty list, after adding 1 item, test if the size of the list is 1 - normal
+		C206_CaseStudy.addCourseSchedule(scheduleList, S1);
+		assertEquals("Test that Course Schedule arraylist size is 1", 1, scheduleList.size());
+		
+		// Given a list that is not empty, after removing 1 item, test if the size of the list is 0 - normal
+		C206_CaseStudy.deleteCourseSchedule(scheduleList, S1.getId());
+		assertEquals("Test that Course Schedule arraylist size is 0", 0, scheduleList.size());
+		
+	}
 }

@@ -11,7 +11,7 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		scheduleList.add(new CourseSchedule(25,20,"25/10/2020 9:00","22/12/2020 10:00","RP"));
+		
 		int option = 0;
 		while (option != 6) {
 			
@@ -367,7 +367,7 @@ public class C206_CaseStudy {
 	        for (int i = 0;i<scheduleList.size();i++) {	        	
 	            if (id == scheduleList.get(i).getId()) {
 	                scheduleList.remove(scheduleList.get(i));
-	                System.out.println("Schedule successfully deleted");
+//	                System.out.println("Schedule successfully deleted");
 	            }else {
 	                System.out.println("ID does not exist!");
 	            }
