@@ -28,7 +28,7 @@ public class C206_CaseStudyTest {
 		
 		S1 = new CourseSchedule(25,20,"25/10/2020 9:00","22/12/2020 10:00","RP");
 		cc = new CourseCategory("Information System","IT is the use of system to store and send information");
-		C1 = new Course("C209","SOFTWARE MANAGEMENT","SOI","1 hours","NONE");
+		//C1 = new Course("C209","SOFTWARE MANAGEMENT","SOI","1 hours","NONE");
 		
 		courseList = new ArrayList<Course>();
 		categoryList = new ArrayList<CourseCategory>();
