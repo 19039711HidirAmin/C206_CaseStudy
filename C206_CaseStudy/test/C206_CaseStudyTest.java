@@ -73,8 +73,6 @@ public class C206_CaseStudyTest {
 		//test if the expected output string same as the list of course schedules retrieved from the SourceCentre	
 		allCourseSchedule= C206_CaseStudy.retrieveAllCourseSchedule(scheduleList);
 		testOutput = String.format("%-10s %-10s %-20s %-20s %-10s","25", "20.00","25/10/2020 9:00","22/12/2020 10:00","RP");
-	
-	
 		assertEquals("Test the View All Course Schedule", testOutput, allCourseSchedule);
 		
 	}
@@ -92,4 +90,5 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that Course Schedule arraylist size is 0", 0, scheduleList.size());
 		
 	}
+	
 }
