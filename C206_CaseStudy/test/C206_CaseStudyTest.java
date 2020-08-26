@@ -44,7 +44,7 @@ public class C206_CaseStudyTest {
 		//fail("Not yet implemented"); 
 		assertTrue("C206_CaseStudy_SampleTest ",true);
 	}
-	
+	// Member 4 - Haziq Hilman
 	@Test
 	public void doAddCourseScheduleTest() {
 		// Item list is not null, so that can add a new item - boundary
