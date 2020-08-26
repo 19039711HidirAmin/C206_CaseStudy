@@ -230,8 +230,16 @@ public class C206_CaseStudy {
 	}
 	
 	public void doDeleteMembers() {
-		//Hidir will do th
-	}
+		String name = Helper.readString("Enter name to delete :  ");
+		for (Members delete : memberList) {	        	
+            if (name.equalsIgnoreCase(delete.getName())) {
+                memberList.remove(delete);
+                System.out.println("Schedule successfully deleted");
+            }else {
+                System.out.println("ID does not exist!");
+            }
+        }
+    }
 	
 	public void searchMember() {
 		String name = Helper.readString("Enter name to search :  ");
